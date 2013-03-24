@@ -463,7 +463,7 @@ mysqlPlanForeignScan(Oid foreigntableid, PlannerInfo *root, RelOptInfo *baserel)
 	result = mysql_store_result(conn);
 
 	while ((row = mysql_fetch_row(result)))
-		rows += atof(row[8]);
+		rows += (row[8] ? atof(row[8]) : 0);
 
 	mysql_free_result(result);
 	mysql_close(conn);
